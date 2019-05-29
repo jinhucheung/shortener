@@ -57,7 +57,7 @@ class Shortener::ShortenedUrl < ActiveRecord::Base
       url    = clean_url(destination_url)
       key    = custom_key || get_unique_key(url)
       record = scope.find_by_unique_key_and_category(key, category) if !fresh
-      record ||= scope.create(
+      record || scope.create(
         url: url,
         category: category,
         custom_key: key,
